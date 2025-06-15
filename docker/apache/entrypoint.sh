@@ -67,7 +67,7 @@ if [ ! -s "${DIR_OPENCART}/config.php" ]; then
         || { echo "Error: OpenCart CLI installation failed!"; exit 1; }
 
     # After successful CLI install, delete the install directory for security
-    echo "Removing installer directory for security..."
+    # echo "Removing installer directory for security..."
     # rm -rf "${DIR_OPENCART}/install"
 else
     echo "OpenCart config.php found. Skipping CLI installation."

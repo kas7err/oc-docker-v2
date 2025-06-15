@@ -4,9 +4,6 @@ services:
   db:
     image: mysql:5.7
     container_name: ${COMPOSE_PROJECT_NAME}-db-1
-    # Remove or comment out the env_file line for the db service:
-    # env_file:
-    #   - .env
     environment: # <--- Ensure all these are present and correctly mapped from your .env
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -28,8 +25,9 @@ services:
     volumes:
       - ./opencart/upload:/var/www/html
       - opencart_storage_data:/storage
-    env_file: # <--- Keep this for apache service so entrypoint.sh can read them
+    env_file:
       - .env
+    user: "${UID}:${GID}"
     depends_on:
       - db
     networks:
