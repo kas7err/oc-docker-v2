@@ -81,7 +81,7 @@ if [ -z "$(ls -A ${DIR_STORAGE} 2>/dev/null)" ] && \
    [ -d "${DIR_OPENCART}/system/storage" ] && \
    [ -n "$(ls -A ${DIR_OPENCART}/system/storage 2>/dev/null)" ]; then
     echo "Relocating OpenCart system/storage content to persistent ${DIR_STORAGE} volume..."
-    mv ${DIR_OPENCART}/system/storage/* ${DIR_STORAGE}/
+    cp -r ${DIR_OPENCART}/system/storage/* ${DIR_STORAGE}/
     # Remove the now empty original storage directory on the bind mount.
     # OpenCart expects this to be gone after the move.
     rmdir ${DIR_OPENCART}/system/storage
