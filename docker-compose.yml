@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: ${COMPOSE_PROJECT_NAME}-db-1
+    # Remove or comment out the env_file line for the db service:
+    # env_file:
+    #   - .env
+    environment: # <--- Ensure all these are present and correctly mapped from your .env
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - opencart-network
+
+  apache:
+    build:
+      context: ./docker/apache
+    container_name: ${COMPOSE_PROJECT_NAME}-apache-1
+    ports:
+      - "80:80"
+    volumes:
+      - ./opencart/upload:/var/www/html
+      - opencart_storage_data:/storage
+    env_file: # <--- Keep this for apache service so entrypoint.sh can read them
+      - .env
+    depends_on:
+      - db
+    networks:
+      - opencart-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ${COMPOSE_PROJECT_NAME}-phpmyadmin-1
+    links:
+      - db:db
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+    networks:
+      - opencart-network
+
+volumes:
+  db_data:
+  opencart_storage_data:
+
+networks:
+  opencart-network:
+    driver: bridge

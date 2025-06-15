@@ -1,0 +1,52 @@
+.idea/
+.vscode/
+.env
+
+
+# Config and Htaccess Files
+opencart/upload/.htaccess
+opencart/upload/config.php
+opencart/upload/admin/config.php
+
+# Install Files
+opencart/upload/install.lock
+
+# Catalog JSON Files
+opencart/upload/catalog/view/data/*
+!opencart/upload/catalog/view/data/index.html
+
+# Catalog HTML Files
+opencart/upload/catalog/view/html/*
+!opencart/upload/catalog/view/html/index.html
+
+# Image Cache Files
+opencart/upload/image/cache/*
+!opencart/upload/image/cache/index.html
+
+# Backup Files
+opencart/upload/system/storage/backup/*
+!opencart/upload/system/storage/backup/index.html
+
+# System Cache Files
+opencart/upload/system/storage/cache/*
+!opencart/upload/system/storage/cache/index.html
+
+# Download Files
+opencart/upload/system/storage/download/*
+!opencart/upload/system/storage/download/index.html
+
+# Log Files
+opencart/upload/system/storage/logs/*
+!opencart/upload/system/storage/logs/index.html
+
+# Session Files
+opencart/upload/system/storage/session/*
+!opencart/upload/system/storage/session/index.html
+
+# Upload Files
+opencart/upload/system/storage/upload/*
+!opencart/upload/system/storage/upload/index.html
+
+# CSS Files
+opencart/upload/catalog/view/stylesheet/stylesheet.css
+
