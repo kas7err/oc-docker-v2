@@ -43,6 +43,10 @@ opencart/upload/system/storage/logs/*
 opencart/upload/system/storage/session/*
 !opencart/upload/system/storage/session/index.html
 
+# Modification Files
+opencart/upload/system/storage/modification/*
+!opencart/upload/system/storage/modification/index.html
+
 # Upload Files
 opencart/upload/system/storage/upload/*
 !opencart/upload/system/storage/upload/index.html
